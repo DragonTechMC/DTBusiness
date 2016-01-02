@@ -14,13 +14,17 @@ import org.spongepowered.api.text.format.TextColors;
 import com.dragontechmc.DTBusiness.commands.*;
 import com.google.inject.Inject;
 
+import java.lang.annotation.Annotation;
+
 import org.slf4j.Logger;
 
 @Plugin(id = "DTBsns", name = "DTBusiness", version = "1.0")
-public class Main {
+public class DTBusiness{
+	
+	@Inject
+    private Game game;
 	
 	private Logger logger;
-	private Game game;
 	private Plugin plugin;
 
 	@Inject
@@ -51,10 +55,13 @@ public class Main {
 			    .arguments(
 			    		GenericArguments.onlyOne(GenericArguments.string(Texts.of("command")))
 			    )
-			    .executor(new HelpCommand())
+			    .executor(new HelpCommand(this))
 			    .build();
 		
 		game.getCommandManager().register(plugin, myCommandSpec, "company", "co");
 	}
 	
+	public Game getGame() {
+        return game;
+    }
 }
