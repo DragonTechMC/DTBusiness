@@ -9,7 +9,7 @@ import com.google.inject.Inject;
 
 import org.slf4j.Logger;
 
-@Plugin(id = "DTEstl", name = "DTEssentials", version = "1.0")
+@Plugin(id = "DTBsns", name = "DTBusiness", version = "1.0")
 public class Main {
 	
 	private Logger logger;
@@ -25,12 +25,12 @@ public class Main {
     
 	@Listener
     public void onServerStart(GameStartedServerEvent event) {
-		getLogger().info("DTEssentils has started!");
+		getLogger().info("DTBusiness has started!");
     }
 	
 	@Listener
     public void onServerStop(GameStoppingServerEvent event) {
-		getLogger().info("DTEssentils has stopped!");
+		getLogger().info("DTBusiness has stopped!");
     }
 	
 }
