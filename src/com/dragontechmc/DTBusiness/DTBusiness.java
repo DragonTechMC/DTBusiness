@@ -25,7 +25,7 @@ public class DTBusiness{
     private Game game;
 	
 	private Logger logger;
-	private Plugin plugin;
+	//private Plugin plugin;
 
 	@Inject
 	private void setLogger(Logger logger) {
@@ -51,14 +51,14 @@ public class DTBusiness{
 	public void buildCommand(){
 		CommandSpec myCommandSpec = CommandSpec.builder()
 			    .description(Texts.builder("DTBusiness help command").color(TextColors.GOLD).build())
-			    .permission("DTBusiness.command.help")
+			    //.permission("DTBusiness.command.help")
 			    .arguments(
 			    		GenericArguments.onlyOne(GenericArguments.string(Texts.of("command")))
 			    )
 			    .executor(new HelpCommand(this))
 			    .build();
 		
-		game.getCommandManager().register(plugin, myCommandSpec, "company", "co");
+		game.getCommandManager().register(this, myCommandSpec, "company", "co");
 	}
 	
 	public Game getGame() {

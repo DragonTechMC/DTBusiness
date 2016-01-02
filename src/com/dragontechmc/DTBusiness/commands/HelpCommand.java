@@ -38,11 +38,11 @@ public class HelpCommand implements CommandExecutor {
     	
     	if (command.equals("help") || command.equals("?")){
     		if(src instanceof Player) {
-    			if (src.hasPermission("DTBusiness.command.create"))
+    			//if (src.hasPermission("DTBusiness.command.create"))
     				contents.add(Texts.of("/co create TBA"));
-    			if (src.hasPermission("DTBusiness.command.delete"))
+    			//if (src.hasPermission("DTBusiness.command.delete"))
     				contents.add(Texts.of("/co delete TBA"));
-    			if (src.hasPermission("DTBusiness.command.invite"))
+    			//if (src.hasPermission("DTBusiness.command.invite"))
     				contents.add(Texts.of("/co invite TBA"));
     			
     	    	builder.title(Texts.of("DTBusiness help"))
