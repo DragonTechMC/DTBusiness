@@ -1,10 +1,17 @@
 package com.dragontechmc.DTBusiness;
 
+import org.spongepowered.api.Game;
+import org.spongepowered.api.command.args.GenericArguments;
+import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.format.TextColors;
 
+import com.dragontechmc.DTBusiness.commands.*;
 import com.google.inject.Inject;
 
 import org.slf4j.Logger;
@@ -13,6 +20,8 @@ import org.slf4j.Logger;
 public class Main {
 	
 	private Logger logger;
+	private Game game;
+	private Plugin plugin;
 
 	@Inject
 	private void setLogger(Logger logger) {
@@ -26,11 +35,26 @@ public class Main {
 	@Listener
     public void onServerStart(GameStartedServerEvent event) {
 		getLogger().info("DTBusiness has started!");
+		
+		buildCommand();
     }
 	
 	@Listener
     public void onServerStop(GameStoppingServerEvent event) {
 		getLogger().info("DTBusiness has stopped!");
     }
+	
+	public void buildCommand(){
+		CommandSpec myCommandSpec = CommandSpec.builder()
+			    .description(Texts.builder("DTBusiness help command").color(TextColors.GOLD).build())
+			    .permission("DTBusiness.command.help")
+			    .arguments(
+			    		GenericArguments.onlyOne(GenericArguments.string(Texts.of("command")))
+			    )
+			    .executor(new HelpCommand())
+			    .build();
+		
+		game.getCommandManager().register(plugin, myCommandSpec, "company", "co");
+	}
 	
 }
